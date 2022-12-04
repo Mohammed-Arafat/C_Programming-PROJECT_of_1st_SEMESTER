@@ -83,7 +83,7 @@ void sign_up()
 {
     read_Data();
     
-    unsigned int i, j, cnt, f;
+    unsigned int i, j, com, f;
 
 
     printf("Enter your user name :-  ");
@@ -92,18 +92,11 @@ void sign_up()
 
     scanf(" %[^\n]", log_of_user[number_of_users].user_Name);
 
-    for ( i = 0, cnt = 0, f = 0; i < number_of_users; i++)
+    for ( i = 0, com = 0, f = 0; i < number_of_users; i++)
     {
-        for ( j = 0; j < strlen(log_of_user[i].user_Name); j++)
-        {
-            if (log_of_user[number_of_users].user_Name[j] == log_of_user[i].user_Name[j])
-            {
-                cnt++;
-            }
-            
-        }
+        com = strcmp(log_of_user[number_of_users].user_Name , log_of_user[i].user_Name);
 
-        if (cnt == strlen(log_of_user[number_of_users].user_Name))
+        if (com == 0)
         {
             f = 1;
 
@@ -147,7 +140,7 @@ void sign_in()
 
     read_Data();
 
-    unsigned int i, j, cnt, f;
+    unsigned int i, j, com, f;
 
     printf("Enter your username:-  ");
 
@@ -155,18 +148,11 @@ void sign_in()
 
     scanf(" %[^\n]", input);
 
-    for ( i = 0, cnt = 0, f = 0; i < number_of_users; i++)
+    for ( i = 0, com = 0, f = 0; i < number_of_users; i++)
         {
-            for ( j = 0; j < strlen(log_of_user[i].user_Name); j++)
-            {
-                if (input[j] == log_of_user[i].user_Name[j])
-                {
-                    cnt++;
-                }
-                
-            }
+            com = strcmp(input , log_of_user[i].user_Name);
 
-            if (cnt == strlen(input))
+            if (com == 0)
             {
                 f = 1;
             }
@@ -181,18 +167,12 @@ void sign_in()
 
             scanf(" %[^\n]", input);
 
-            for ( i = 0, cnt = 0, f = 0; i < number_of_users; i++)
+            for ( i = 0, com = 0, f = 0; i < number_of_users; i++)
             {
-                for ( j = 0; j < strlen(log_of_user[i].password); j++)
-                {
-                    if (input[j] == log_of_user[i].password[j])
-                    {
-                        cnt++;
-                    }
-                
-                }
+                com = strcmp(input , log_of_user[i].password);
+            
 
-                if (cnt == strlen(input))
+                if (com == 0)
                 {
                     f = 1;
                 }
@@ -212,10 +192,8 @@ void sign_in()
 
                 goto again_password;
             }
-            
-            
+
         }
-        
 
         else
         {
