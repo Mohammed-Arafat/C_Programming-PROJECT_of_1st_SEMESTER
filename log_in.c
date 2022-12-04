@@ -21,6 +21,8 @@ void sign_up();
 
 void sign_in();
 
+void write_Data();
+
 
 
 void read_Data()
@@ -52,81 +54,88 @@ void read_Data()
 
 
 
-void sign_up()
+
+void write_Data()
 {
     FILE *fl;
 
-    fl = fopen("log_in.txt", "r");
+    fl = fopen("log_in.txt", "w");
 
-    if (fl == 0)
+    unsigned int i;
+
+    fprintf(fl, "%u\n\n\n\n", number_of_users);
+
+    for ( i = 0; i < number_of_users; i++)
     {
-        printf("File not found\n");
+        fprintf(fl, "%s\n", log_of_user[i].user_Name);
+
+        fprintf(fl, "%s\n\n\n\n", log_of_user[i].password);
     }
-    else
+
+    fclose(fl);
+
+}
+
+
+
+
+void sign_up()
+{
+    read_Data();
+    
+    unsigned int i, j, cnt, f;
+
+
+    printf("Enter your user name :-  ");
+
+    again:;
+
+    scanf(" %[^\n]", log_of_user[number_of_users].user_Name);
+
+    for ( i = 0, cnt = 0, f = 0; i < number_of_users; i++)
     {
-        unsigned int i, j, cnt, f;
-
-        fscanf(fl, "%u", &number_of_users);
-
-        fclose(fl);
-
-        printf("Enter your user name :-  ");
-
-        again:;
-
-        scanf(" %[^\n]", log_of_user[number_of_users].user_Name);
-
-        for ( i = 0, cnt = 0, f = 0; i < number_of_users; i++)
+        for ( j = 0; j < strlen(log_of_user[i].user_Name); j++)
         {
-            for ( j = 0; j < strlen(log_of_user[i].user_Name); j++)
+            if (log_of_user[number_of_users].user_Name[j] == log_of_user[i].user_Name[j])
             {
-                if (log_of_user[number_of_users].user_Name[j] == log_of_user[i].user_Name[j])
-                {
-                    cnt++;
-                }
-                
+                cnt++;
             }
-
-            if (cnt == strlen(log_of_user[number_of_users].user_Name))
-            {
-                f = 1;
-
-                goto find;
-            }
-            
             
         }
 
-        find:;
-
-        if (f == 1)
+        if (cnt == strlen(log_of_user[number_of_users].user_Name))
         {
-            printf("You can't enter this username. Because this username is already used.\n\n\nEnter your username again :-  ");
+            f = 1;
 
-            goto again;
+            goto find;
         }
         
-        printf("\n");
-
-        printf("Enter your password :- ");
-
-        scanf(" %[^\n]", log_of_user[number_of_users].password);
-
-        printf ("\n\n\n");
-
-        printf("Thanks for sign up\n");
-
-        number_of_users++;
-
-        fl = fopen("log_in.txt", "w");
-
-        fprintf(fl, "%u\n\n\n\n", number_of_users);
-
-        fprintf(fl, "%s\n%s\n", log_of_user[number_of_users - 1].user_Name, log_of_user[number_of_users - 1].password);
-
-        fclose(fl);
-
+        
     }
+
+    find:;
+
+    if (f == 1)
+    {
+        printf("You can't enter this username. Because this username is already used.\n\n\nEnter your username again :-  ");
+
+        goto again;
+    }
+    
+    printf("\n");
+
+    printf("Enter your password :- ");
+
+    scanf(" %[^\n]", log_of_user[number_of_users].password);
+
+    printf ("\n\n\n");
+
+    printf("Thanks for sign up\n");
+
+    number_of_users++;
+
+    write_Data();
+
 }
 
 
