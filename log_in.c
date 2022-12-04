@@ -87,10 +87,9 @@ void sign_up()
     
     unsigned int i, j, com, f;
 
+    again:;
 
     printf("Enter your username :-  ");
-
-    again:;
 
     scanf(" %[^\n]", log_of_user[number_of_users].user_Name);
 
@@ -114,9 +113,25 @@ void sign_up()
     {
         system("cls");
 
-        printf("You can't enter this username. Because this username is already used.\n\n\nEnter your username again :-  ");
+        printf("You can't enter this username. Because this username is already used.\n\n\n1.Enter your username again.......\n\nOR\n\n2. Exit\n\n\n===>>>  ");
 
-        goto again;
+        unsigned short ex;
+
+        scanf("%hu", &ex);
+
+        if (ex == 1)
+        {
+            goto again;
+        }
+        else if (ex == 2)
+        {
+            goto exit_f;
+        }
+        else
+        {
+            printf("Your command is wrong.\n");
+        }
+        
     }
     
     printf("\n");
@@ -133,6 +148,7 @@ void sign_up()
 
     write_Data();
 
+    exit_f:;
 }
 
 
