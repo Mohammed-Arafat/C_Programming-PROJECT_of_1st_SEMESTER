@@ -89,9 +89,30 @@ void sign_up()
 
     again:;
 
+    system("cls");
+
+    printf("Remember, username can't have \'SPACE\' characters\n\n");
+
     printf("Enter your username :-  ");
 
     scanf(" %[^\n]", log_of_user[number_of_users].user_Name);
+
+
+    for ( i = 0, f = 0; i < strlen(log_of_user[number_of_users].user_Name); i++)
+    {
+        if (log_of_user[number_of_users].user_Name[i] == ' ')
+        {
+            system("cls");
+
+            f = 1;
+
+            printf("Username invalid\n\n1.Try again......\n\nOR\n\n2. Exit\n\n===>>>  ");
+
+            goto find;
+        }
+        
+    }
+    
 
     for ( i = 0, com = 0, f = 0; i < number_of_users; i++)
     {
@@ -100,6 +121,10 @@ void sign_up()
         if (com == 0)
         {
             f = 1;
+
+            system("cls");
+
+            printf("You can't enter this username. Because this username is already used.\n\n\n1.Enter your username again.......\n\nOR\n\n2. Exit\n\n\n===>>>  ");
 
             goto find;
         }
@@ -111,10 +136,6 @@ void sign_up()
 
     if (f == 1)
     {
-        system("cls");
-
-        printf("You can't enter this username. Because this username is already used.\n\n\n1.Enter your username again.......\n\nOR\n\n2. Exit\n\n\n===>>>  ");
-
         unsigned short ex;
 
         scanf("%hu", &ex);
