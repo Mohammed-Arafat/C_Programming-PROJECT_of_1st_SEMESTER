@@ -72,9 +72,9 @@ void am();
 int main()
 {
     consoleUI();
-    gotoxy(XS+14, YS);
+    gotoxy(XS+16, YS + 5);
     printf("> WELCOME TO THE REAL-ESTATE ADVISOR APP <");
-    gotoxy(XS+20, YS+2);
+    gotoxy(XS+22, YS+7);
     system("pause");
 
     int inp, inp2, inp1, inp3, inp4, logRet;
@@ -1652,7 +1652,7 @@ void consoleUI()
     int x, y;
     for(x = 20, y = 5 ; x <= 95 ; x++) /// Top Border
     {
-        setColor(3);
+        setColor(6);
         gotoxy(x, y);
         printf("%c", 219);
     }
@@ -1674,8 +1674,6 @@ void consoleUI()
         gotoxy(x, y);
         printf("%c", 219);
     }
-    
-    setColor(6);
 
     Show_Curr_User();
 
